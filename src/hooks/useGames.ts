@@ -1,12 +1,16 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { fetchGames } from '../api/rawg'
+import { querySampleGames } from '../data/sampleGames'
 import type { ApiErrorType, Game } from '../types/game'
+
+const hasApiKey = Boolean(import.meta.env.VITE_RAWG_API_KEY)
 
 interface UseGamesState {
   games: Game[]
   loading: boolean
   error: { message: string; type: ApiErrorType } | null
   hasMore: boolean
+  usingSampleData: boolean
 }
 
 export function useGames(search: string, platform: string) {
@@ -15,6 +19,7 @@ export function useGames(search: string, platform: string) {
     loading: true,
     error: null,
     hasMore: false,
+    usingSampleData: !hasApiKey,
   })
   const pageRef = useRef(1)
   const abortRef = useRef<AbortController | null>(null)
@@ -22,6 +27,19 @@ export function useGames(search: string, platform: string) {
   // Reset and fetch when search/platform change
   useEffect(() => {
     pageRef.current = 1
+
+    if (!hasApiKey) {
+      const results = querySampleGames(search, platform)
+      setState({
+        games: results,
+        loading: false,
+        error: null,
+        hasMore: false,
+        usingSampleData: true,
+      })
+      return
+    }
+
     load(1, true)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [search, platform])
@@ -55,6 +73,7 @@ export function useGames(search: string, platform: string) {
           loading: false,
           error: null,
           hasMore: data.next !== null,
+          usingSampleData: false,
         }))
       } catch (err) {
         // Ignore aborted requests

@@ -1,13 +1,10 @@
 import { BrowserRouter, Link, Route, Routes } from 'react-router-dom'
-import { ApiKeyMissing } from './components/ApiKeyMissing'
 import { ThemeToggle } from './components/ThemeToggle'
 import { useDarkMode } from './hooks/useDarkMode'
 import { useFavorites } from './hooks/useFavorites'
 import { FavoritesPage } from './pages/FavoritesPage'
 import { HomePage } from './pages/HomePage'
 import styles from './App.module.css'
-
-const hasApiKey = Boolean(import.meta.env.VITE_RAWG_API_KEY)
 
 export default function App() {
   const { isDark, toggle } = useDarkMode()
@@ -32,31 +29,27 @@ export default function App() {
         </header>
 
         <main className={styles.main}>
-          {!hasApiKey ? (
-            <ApiKeyMissing />
-          ) : (
-            <Routes>
-              <Route
-                path="/"
-                element={
-                  <HomePage
-                    isFavorite={isFavorite}
-                    onToggleFavorite={toggleFavorite}
-                  />
-                }
-              />
-              <Route
-                path="/favorites"
-                element={
-                  <FavoritesPage
-                    favorites={favorites}
-                    isFavorite={isFavorite}
-                    onToggleFavorite={toggleFavorite}
-                  />
-                }
-              />
-            </Routes>
-          )}
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <HomePage
+                  isFavorite={isFavorite}
+                  onToggleFavorite={toggleFavorite}
+                />
+              }
+            />
+            <Route
+              path="/favorites"
+              element={
+                <FavoritesPage
+                  favorites={favorites}
+                  isFavorite={isFavorite}
+                  onToggleFavorite={toggleFavorite}
+                />
+              }
+            />
+          </Routes>
         </main>
 
         <footer className={styles.footer}>

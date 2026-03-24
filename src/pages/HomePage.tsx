@@ -18,13 +18,23 @@ export function HomePage({ isFavorite, onToggleFavorite }: Props) {
   const [search, setSearch] = useState('')
   const [platform, setPlatform] = useState('')
   const debouncedSearch = useDebounce(search, 300)
-  const { games, loading, error, hasMore, loadMore } = useGames(
+  const { games, loading, error, hasMore, loadMore, usingSampleData } = useGames(
     debouncedSearch,
     platform,
   )
 
   return (
     <div className={styles.page}>
+      {usingSampleData && (
+        <div className={styles.banner}>
+          Showing sample games. Add a{' '}
+          <a href="https://rawg.io/apidocs" target="_blank" rel="noopener noreferrer">
+            RAWG API key
+          </a>{' '}
+          to <code>.env</code> for the full catalog.
+        </div>
+      )}
+
       <div className={styles.controls}>
         <SearchBar value={search} onChange={setSearch} />
         <FilterChips active={platform} onChange={setPlatform} />
