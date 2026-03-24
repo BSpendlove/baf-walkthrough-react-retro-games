@@ -29,3 +29,7 @@ See [context/PROCESS.md](context/PROCESS.md) for the full workflow definition.
 | `/spec-implement <path>` | Implement code from finalized spec |
 | `/spec-final-review <path>` | Post-implementation code review |
 | `/spec-status [issue]` | Show workflow status |
+
+## Image Acknowledgement
+
+The sample game images included in `public/images/games/` are sourced from [RAWG Video Games Database](https://rawg.io/) and are used here **for educational and demonstration purposes only**. All game artwork and screenshots are the property of their respective publishers and developers. These images are not intended for commercial use. If you are a rights holder and would like any image removed, please open an issue.
