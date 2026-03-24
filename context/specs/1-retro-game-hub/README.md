@@ -11,9 +11,9 @@ React SPA for browsing, searching, and favoriting retro games via the RAWG API.
 | Phase | Status | Agent |
 |-------|--------|-------|
 | spec-create | Complete | Claude |
-| spec-review | Not Started | — |
-| spec-critique | Not Started | — |
-| spec-finalize | Not Started | — |
+| spec-review | Complete | Gemini |
+| spec-critique | Complete | Codex |
+| spec-finalize | Complete | Claude |
 | spec-implement | Not Started | — |
 | spec-final-review | Not Started | — |
 
