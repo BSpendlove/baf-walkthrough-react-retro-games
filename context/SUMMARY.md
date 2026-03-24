@@ -6,14 +6,18 @@ This file tracks project state. Every agent session should read this before star
 
 ## Current State
 
-Retro Game Hub — no work completed yet. File an issue to get started.
+Retro Game Hub — React SPA for browsing, searching, and favoriting retro games via the RAWG API.
 
 ## Completed Specs
 
 | Spec | Issue | Status | Summary |
 |------|-------|--------|---------|
-| *(none yet)* | | | |
+| 1-retro-game-hub | #1 | Implemented | Core app: game grid, search, platform filters, favorites, dark mode |
 
 ## Key Decisions
 
-*(Decisions that affect future specs will be recorded here as work progresses.)*
+- **Vite + TypeScript + React Router v7** — project toolchain
+- **CSS Modules + CSS variables** — scoped styles with dark/light theme support
+- **Snapshot-based favorites** — localStorage stores full game snapshots, not just IDs, so /favorites renders without API calls
+- **RAWG API key is client-side** — acceptable for portfolio project; documented in spec
+- **Dark mode default** — retro games look better dark
